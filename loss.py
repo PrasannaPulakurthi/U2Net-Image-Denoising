@@ -11,9 +11,9 @@ def combined_ssim_l1_loss(pred, target, alpha=0.5):
     return alpha * ssim_val + (1 - alpha) * l1
 
 def combined_ssim_l2_loss(pred, target, alpha=0.5):
-    l1 = nn.MSELoss()(pred, target)
+    l2 = nn.MSELoss()(pred, target)
     ssim_val = ssim_loss(pred, target)
-    return alpha * ssim_val + (1 - alpha) * l1
+    return alpha * ssim_val + (1 - alpha) * l2
 
 def get_loss_function(loss_type: str):
     if loss_type == 'mse':
