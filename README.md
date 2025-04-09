@@ -26,7 +26,9 @@ conda create -n u2net python=3.9
 conda activate u2net
 ~~~
     
-2. Clone this repo
+2. Install Pytorch from [Pytorch](https://pytorch.org/get-started/locally/).
+   
+3. Clone this repo
 
 ```bash
 git clone https://github.com/PrasannaPulakurthi/U2Net-Image-Denoising.git
@@ -34,7 +36,6 @@ cd U2Net-Image-Denoising
 pip install -r requirements.txt
 ```
 
-3. Install Pytorch from [Pytorch](https://pytorch.org/get-started/locally/).
 
 ## 📥 Dataset Preparation
 
