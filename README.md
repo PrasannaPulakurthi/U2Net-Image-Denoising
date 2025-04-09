@@ -9,3 +9,12 @@
 
 ## Training and Testing 
 All the training and testing commands are found in `run_experiments.sh`
+
+---
+
+## 📈 Evaluation Metrics
+
+During testing, we compute:
+
+- **PSNR** (Peak Signal-to-Noise Ratio)
+- **SSIM** (Structural Similarity Index)
