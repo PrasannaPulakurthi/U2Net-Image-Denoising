@@ -8,9 +8,9 @@
 | ![](outputs/test_outputs/0001_input.png) | ![](outputs/test_outputs/0001_output.png) | ![](outputs/test_outputs/0001_target.png) |
 
 ## Results
-|    Loss   | PSNR | SSIM |
-|-----------|------|------|
-| MSE (L2)  |  |  |
+|    Loss   |  PSNR | SSIM |
+|-----------|-------|------|
+| MSE (L2)  | 24.50 | 0.81 |
 | MAE (L1)  |  |  |
 | SSIM      |  |  |
 | SSIM + L2 |  |  |
