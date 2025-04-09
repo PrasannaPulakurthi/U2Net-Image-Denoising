@@ -7,7 +7,7 @@
 |-------------|------------------|---------------|
 | ![](outputs/test_outputs/0001_input.png) | ![](outputs/test_outputs/0001_output.png) | ![](outputs/test_outputs/0001_target.png) |
 
-## Training and Testing 
+## 🎯 Training and Testing 
 All the training and testing commands are found in `run_experiments.sh`
 
 
