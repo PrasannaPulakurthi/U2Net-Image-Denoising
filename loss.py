@@ -10,6 +10,11 @@ def combined_ssim_l1_loss(pred, target, alpha=0.5):
     ssim_val = ssim_loss(pred, target)
     return alpha * ssim_val + (1 - alpha) * l1
 
+def combined_ssim_l2_loss(pred, target, alpha=0.5):
+    l1 = nn.MSELoss()(pred, target)
+    ssim_val = ssim_loss(pred, target)
+    return alpha * ssim_val + (1 - alpha) * l1
+
 def get_loss_function(loss_type: str):
     if loss_type == 'mse':
         return nn.MSELoss()
@@ -19,5 +24,7 @@ def get_loss_function(loss_type: str):
         return ssim_loss
     elif loss_type == 'ssim_l1':
         return combined_ssim_l1_loss
+    elif loss_type == 'ssim_l2':
+        return combined_ssim_l2_loss
     else:
         raise ValueError(f"Unsupported loss type: {loss_type}.")

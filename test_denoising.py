@@ -1,6 +1,5 @@
 import os
 import torch
-import torch.nn as nn
 from model.u2net import U2NET, U2NETP
 from dataset import DIV2KWithSyntheticNoise
 from torchvision.utils import save_image
@@ -8,49 +7,39 @@ from torch.utils.data import DataLoader
 from pytorch_msssim import ssim
 from utils import compute_psnr
 from tqdm import tqdm
-import numpy as np
+from config.all_config import AllConfig
+
 
 # -----------------------------
-# Config
+# Parameters
 # -----------------------------
-img_size = 256
-batch_size = 1
-noise_std = 0.1
-data_dir = "data/DIV2K_512"
-output_dir = "outputs/train_output_images"
-model_path = "outputs/checkpoints/u2net_last.pth"
-model_name = "u2net"  # or 'u2netp'
-
-# -----------------------------
-# Prepare output folder
-# -----------------------------
-os.makedirs(output_dir, exist_ok=True)
+config = AllConfig()
 
 # -----------------------------
 # Load Test Dataset
 # -----------------------------
 test_dataset = DIV2KWithSyntheticNoise(
-    root_dir=data_dir,
-    noise_std=noise_std,
-    image_size=(img_size, img_size),
+    root_dir=config.data_dir,
+    noise_std=config.noise_std,
+    image_size=(config.img_size, config.img_size),
     training_mode='test'
 )
 
-test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False)
 
 # -----------------------------
 # Load Model
 # -----------------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-if model_name == 'u2net':
+if config.model_name == 'u2net':
     model = U2NET(in_ch=3, out_ch=3)
-elif model_name == 'u2netp':
+elif config.model_name == 'u2netp':
     model = U2NETP(in_ch=3, out_ch=3)
 else:
     raise ValueError("Unsupported model name")
 
-model.load_state_dict(torch.load(model_path, map_location=device))
+model.load_state_dict(torch.load(f"{config.model_dir}/{config.model_name}_last.pth", map_location=device))
 model.to(device)
 model.eval()
 
@@ -79,9 +68,9 @@ with torch.no_grad():
         total_ssim += batch_ssim.item()
 
         # Save sample outputs
-        save_image(noisy_imgs[0], os.path.join(output_dir, f"{idx:04d}_input.png"))
-        save_image(output[0], os.path.join(output_dir, f"{idx:04d}_output.png"))
-        save_image(clean_imgs[0], os.path.join(output_dir, f"{idx:04d}_target.png"))
+        save_image(noisy_imgs[0], os.path.join(config.test_img_dir, f"{idx:04d}_input.png"))
+        save_image(output[0], os.path.join(config.test_img_dir, f"{idx:04d}_output.png"))
+        save_image(clean_imgs[0], os.path.join(config.test_img_dir, f"{idx:04d}_target.png"))
 
 # -----------------------------
 # Final Metrics
