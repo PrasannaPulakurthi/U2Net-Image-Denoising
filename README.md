@@ -59,7 +59,7 @@ All the training and testing commands can be found in `run_experiments.sh`
 
 ### Testing
 
-Download the pretrained model `u2net_last.pth` from GoogleDrive to `outputs/exp_5/checkpoints/` and run the following command:
+Download the pretrained model from `outputs/exp_5/checkpoints/u2net_last.pth` in [GoogleDrive](https://drive.google.com/drive/folders/1axZDefThLL6y0q1yjVMEkb4LIFfYVj85?usp=sharing) to `outputs/exp_5/checkpoints/` and run the following command:
 
 ```bash
 python test_denoising.py --exp_name exp_5
