@@ -1,13 +1,13 @@
-import os
 import torch
 from model.u2net import U2NET, U2NETP
 from dataset import DIV2KWithSyntheticNoise
-from torchvision.utils import save_image
 from torch.utils.data import DataLoader
 from pytorch_msssim import ssim
 from utils import compute_psnr
 from tqdm import tqdm
+from utils import save_minibatch_images
 from config.all_config import AllConfig
+from utils import unnormalize_tensor
 
 
 # -----------------------------
@@ -39,7 +39,7 @@ elif config.model_name == 'u2netp':
 else:
     raise ValueError("Unsupported model name")
 
-model.load_state_dict(torch.load(f"{config.model_dir}/{config.model_name}_last.pth", map_location=device))
+model.load_state_dict(torch.load(f"{config.model_dir}/{config.model_name}_{config.load_epoch}.pth", map_location=device))
 model.to(device)
 model.eval()
 
@@ -58,19 +58,18 @@ with torch.no_grad():
         output = model(noisy_imgs)
         if isinstance(output, tuple):  # Handle U2Net multi-output
             output = output[0]
-        output = torch.clamp(output, 0.0, 1.0)
+
+        output = torch.clamp(output,0,1) # Clamp values between 0 and 1
 
         # Compute metrics
-        batch_psnr = compute_psnr(output, clean_imgs)
-        batch_ssim = ssim(output, clean_imgs, data_range=1.0, size_average=True)
+        batch_psnr = compute_psnr((output), (clean_imgs))
+        batch_ssim = ssim((output), (clean_imgs), data_range=1.0, size_average=True)
 
         total_psnr += batch_psnr.item()
         total_ssim += batch_ssim.item()
 
-        # Save sample outputs
-        save_image(noisy_imgs[0], os.path.join(config.test_img_dir, f"{idx:04d}_input.png"))
-        save_image(output[0], os.path.join(config.test_img_dir, f"{idx:04d}_output.png"))
-        save_image(clean_imgs[0], os.path.join(config.test_img_dir, f"{idx:04d}_target.png"))
+        # Save images for visualization
+        save_minibatch_images(noisy_imgs, clean_imgs, output, idx, config.test_img_dir, 1)
 
 # -----------------------------
 # Final Metrics

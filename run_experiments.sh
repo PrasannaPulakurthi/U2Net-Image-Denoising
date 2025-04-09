@@ -16,5 +16,5 @@ python test_denoising.py --exp_name exp_4
 
 # Training & Testing,  Loss = SSIM + L1
 python train_denoising.py --exp_name exp_5 --loss_type ssim_l1
-python test_denoising.py --exp_name exp_5 
+python test_denoising.py --exp_name exp_5
 

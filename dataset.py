@@ -3,6 +3,7 @@ from PIL import Image
 import torch
 from torch.utils.data import Dataset
 from torchvision import transforms
+from utils import normalize_tensor, unnormalize_tensor
 
 
 class DIV2KWithSyntheticNoise(Dataset):
@@ -26,12 +27,14 @@ class DIV2KWithSyntheticNoise(Dataset):
             self.transform = transforms.Compose([
                 transforms.RandomCrop(self.image_size),
                 transforms.RandomHorizontalFlip(),
-                transforms.ToTensor()
+                transforms.ToTensor(),
+                normalize_tensor
             ])
         else:
             self.transform = transforms.Compose([
-                transforms.CenterCrop(self.image_size),
-                transforms.ToTensor()
+                transforms.Resize((self.image_size)),
+                transforms.ToTensor(),
+                normalize_tensor
             ])
 
     def __len__(self):
@@ -41,10 +44,12 @@ class DIV2KWithSyntheticNoise(Dataset):
         # Load clean image
         img_path = self.image_paths[idx]
         clean_img = Image.open(img_path).convert("RGB")
-        clean_tensor = self.transform(clean_img)
+        clean_tensor = self.transform(clean_img) 
 
         # Add synthetic Gaussian noise
         noise = torch.randn_like(clean_tensor) * self.noise_std
-        noisy_tensor = torch.clamp(clean_tensor + noise, 0., 1.)
+        
+        noisy_tensor = clean_tensor + noise # Input [-1, 1]
+        clean_tensor = unnormalize_tensor(clean_tensor) # [0, 1]
 
         return noisy_tensor, clean_tensor

@@ -55,7 +55,7 @@ for epoch in range(config.num_epochs):
         noisy_imgs, clean_imgs = noisy_imgs.to(device), clean_imgs.to(device)
 
         optimizer.zero_grad()
-        denoised_imgs, d1,d2,d3,d4,d5,d6 = model(noisy_imgs)
+        denoised_imgs, d1, d2, d3, d4, d5, d6 = model(noisy_imgs)
         loss = (criterion(denoised_imgs, clean_imgs) + criterion(d1, clean_imgs) + 
                 criterion(d2, clean_imgs) + criterion(d3, clean_imgs) + criterion(d4, clean_imgs) + 
                 criterion(d5, clean_imgs) + criterion(d6, clean_imgs))
@@ -72,8 +72,9 @@ for epoch in range(config.num_epochs):
 
     print(f"[Epoch {epoch+1}] Avg Loss: {running_loss/len(train_loader):.4f}")
 
-    # Save model checkpoint
-    # torch.save(model.state_dict(), f"{model_dir}/{config.model_name}_epoch{epoch+1}.pth")
+    if epoch%10==0:
+        # Save model checkpoint
+        torch.save(model.state_dict(), f"{config.model_dir}/{config.model_name}_{epoch}.pth")
 
 # -----------------------------
 # Save the final model checkpoint
