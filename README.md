@@ -32,6 +32,21 @@ data/
 
 All the training and testing commands can be found in `run_experiments.sh`
 
+### Testing
+
+Download the pretrained model `u2net_last.pth` from GoogleDrive to `outputs/exp_5/checkpoints/` and run the following command:
+
+```bash
+python test_denoising.py --exp_name exp_5
+```
+
+### Training
+
+To train the u2net with L1 and SSIM losses using the following command:
+
+```bash
+python train_denoising.py --exp_name exp_5 --loss_type ssim_l1
+```
 
 ## 📈 Evaluation Metrics
 
