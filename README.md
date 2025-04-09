@@ -16,6 +16,18 @@
 | SSIM + L2 | 26.91 | 0.88 |
 | SSIM + L1 | 28.36 | 0.88 |
 
+## 🚀 Installation
+
+### 1. Clone this repo
+
+```bash
+git clone https://github.com/PrasannaPulakurthi/U2Net-Image-Denoising.git
+cd U2Net-Image-Denoising
+pip install -r requirements.txt
+```
+
+Install Pytorch from [Pytorch](https://pytorch.org/get-started/locally/).
+
 ## 📥 Dataset Preparation
 
 1. Download the train and test DIV2K dataset from [GoogleDrive](https://drive.google.com/drive/folders/1axZDefThLL6y0q1yjVMEkb4LIFfYVj85?usp=sharing).
