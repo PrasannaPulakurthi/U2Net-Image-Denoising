@@ -15,6 +15,7 @@ class Config(ABC):
 
         self.model_name = args.model_name
         self.loss_type = args.loss_type
+        self.load_epoch = args.load_epoch
 
         self.exp_name = args.exp_name
         self.output_dir = args.output_dir

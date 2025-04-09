@@ -12,7 +12,7 @@ class AllConfig(Config):
         
         # Basic training parameters
         parser.add_argument('--img_size', type=int, default=256)
-        parser.add_argument('--num_epochs', type=int, default=50)
+        parser.add_argument('--num_epochs', type=int, default=100)
         parser.add_argument('--batch_size', type=int, default=12)
         parser.add_argument('--learning_rate', type=float, default=1e-3)
 
@@ -23,6 +23,7 @@ class AllConfig(Config):
         # Model & loss
         parser.add_argument('--model_name', type=str, default='u2net', choices=['u2net', 'u2netp'])
         parser.add_argument('--loss_type', type=str, default='ssim_l1', choices=['mse', 'mae', 'ssim', 'ssim_l1', 'ssim_l2'])
+        parser.add_argument('--load_epoch', type=str, default='last')
 
         # Output folders
         parser.add_argument('--exp_name', type=str, default='exp')
