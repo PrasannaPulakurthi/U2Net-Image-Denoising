@@ -8,18 +8,13 @@
 | ![](outputs/test_outputs/0001_input.png) | ![](outputs/test_outputs/0001_output.png) | ![](outputs/test_outputs/0001_target.png) |
 
 ## Results
-| Loss | PSNR | SSIM |
-|------|------|------|
-| MSE (L2) |  |  |
-|------|------|------|
-| MAE (L1) |  |  |
-|------|------|------|
-| SSIM |  |  |
-|------|------|------|
+|    Loss   | PSNR | SSIM |
+|-----------|------|------|
+| MSE (L2)  |  |  |
+| MAE (L1)  |  |  |
+| SSIM      |  |  |
 | SSIM + L2 |  |  |
-|------|------|------|
 | SSIM + L1 |  |  |
-|------|------|------|
 
 ## 🎯 Training and Testing 
 
