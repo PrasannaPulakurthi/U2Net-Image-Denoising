@@ -26,8 +26,12 @@ conda create -n u2net python=3.9
 conda activate u2net
 ~~~
     
-2. Install Pytorch from [Pytorch](https://pytorch.org/get-started/locally/).
+2. Install Pytorch from [Pytorch](https://pytorch.org/get-started/locally/). For example, if you have CUDA 11.8, use the following: 
    
+```bash
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
 3. Clone this repo
 
 ```bash
