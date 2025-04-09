@@ -5,7 +5,7 @@
 
 | Noisy Image | Denoised Output | Ground Truth |
 |-------------|------------------|---------------|
-| ![](outputs/test_img_dir/0002_input.png) | ![](outputs/test_img_dir/0002_output.png) | ![](outputs/test_img_dir/0002_target.png) |
+| ![](outputs/test_img_dir/3_input_0.png) | ![](outputs/test_img_dir/3_output_0.png) | ![](outputs/test_img_dir/3_target_0.png) |
 
 ## Results
 |    Loss   |  PSNR | SSIM |
