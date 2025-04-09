@@ -14,7 +14,7 @@
 | MAE (L1)  | 26.72 | 0.83 |
 | SSIM      | 25.93 | 0.86 |
 | SSIM + L2 | 26.49 | 0.86 |
-| SSIM + L1 |  |  |
+| SSIM + L1 | 27.71 | 0.86 |
 
 ## 🎯 Training and Testing 
 
