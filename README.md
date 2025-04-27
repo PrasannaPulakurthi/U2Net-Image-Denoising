@@ -1,7 +1,7 @@
 # <p align="center"> Image Denoising</p>
 
 
-## 📸 Sample Results
+## Sample Results
 
 | Noisy Image | Denoised Output | Ground Truth |
 |-------------|------------------|---------------|
@@ -41,7 +41,7 @@ pip install -r requirements.txt
 ```
 
 
-## 📥 Dataset Preparation
+## Dataset Preparation
 
 1. Download the train and test DIV2K dataset from [GoogleDrive](https://drive.google.com/drive/folders/1axZDefThLL6y0q1yjVMEkb4LIFfYVj85?usp=sharing).
 2. Organize as:
@@ -53,7 +53,7 @@ data/
     └── Test/
 ```
 
-## 🎯 Training and Testing 
+## Training and Testing 
 
 All the training and testing commands can be found in `run_experiments.sh`
 
@@ -73,7 +73,7 @@ To train the u2net with L1 and SSIM losses using the following command:
 python train_denoising.py --exp_name exp_5 --loss_type ssim_l1
 ```
 
-## 📈 Evaluation Metrics
+## Evaluation Metrics
 
 During testing, we compute:
 - **PSNR** (Peak Signal-to-Noise Ratio)
