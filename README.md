@@ -16,7 +16,7 @@
 | SSIM + L2 | 29.98 | **0.93** |
 | SSIM + L1 | **30.28** | 0.92 |
 
-## 🚀 Installation
+## Installation
 
    
 1. Create a conda environment using Python 3.9.
